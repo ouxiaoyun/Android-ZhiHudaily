@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android_zhihu.activity.MainActivity" >
+
+    <com.android_zhihu.activity.widget.CombineTitle
+        android:id="@+id/cobineTitle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" >
+    </com.android_zhihu.activity.widget.CombineTitle>
+
+    <com.android_zhihu.activity.widget.CombineListandViewpager
+        android:id="@+id/combinelandv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </com.android_zhihu.activity.widget.CombineListandViewpager>
+
+</LinearLayout>
