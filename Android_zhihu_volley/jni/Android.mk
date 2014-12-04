@@ -16,7 +16,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE    := api
-LOCAL_SRC_FILES := com_android_zhihu_activity_c_API.c
+LOCAL_MODULE    := hello-jni
+LOCAL_SRC_FILES := hello-jni.c
 
 include $(BUILD_SHARED_LIBRARY)

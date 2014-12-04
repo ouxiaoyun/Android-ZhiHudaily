@@ -1,10 +1,17 @@
 package com.android_zhihu.activity.entity;
 
-import android.graphics.Bitmap;
 
 public class Story extends AbstractStory {
+	private boolean multipic;
 	private String[] images;
-	private Bitmap bitmap;
+
+	public boolean isMultipic() {
+		return multipic;
+	}
+
+	public void setMultipic(boolean multipic) {
+		this.multipic = multipic;
+	}
 
 	public String[] getImages() {
 		return images;
@@ -12,14 +19,6 @@ public class Story extends AbstractStory {
 
 	public void setImages(String[] images) {
 		this.images = images;
-	}
-
-	public Bitmap getBitmap() {
-		return bitmap;
-	}
-
-	public void setBitmap(Bitmap bitmap) {
-		this.bitmap = bitmap;
 	}
 
 }

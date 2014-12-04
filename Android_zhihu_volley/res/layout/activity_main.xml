@@ -11,10 +11,14 @@
         android:layout_height="60dp" >
     </com.android_zhihu.activity.widget.CombineTitle>
 
-    <com.android_zhihu.activity.widget.CombineListandViewpager
-        android:id="@+id/combinelandv"
+    
+    <FrameLayout 
+        
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </com.android_zhihu.activity.widget.CombineListandViewpager>
+        android:layout_height="match_parent"
+        
+        ></FrameLayout>
+  
 
 </LinearLayout>

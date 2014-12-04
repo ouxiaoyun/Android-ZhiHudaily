@@ -26,3 +26,10 @@ JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getBefore
 	return (*env)->NewStringUTF(env, "http://news-at.zhihu.com/api/3/stories/before/%s");
 
 }
+
+JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getTheme
+  (JNIEnv *env, jclass thiz){
+
+	return (*env)->NewStringUTF(env, "http://news-at.zhihu.com/api/3/theme/%s");
+
+}

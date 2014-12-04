@@ -39,6 +39,14 @@ JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getLatestUrl
 JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getBefore
   (JNIEnv *, jclass);
 
+/*
+ * Class:     com_android_zhihu_activity_c_API
+ * Method:    getTheme
+ * Signature: ()Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getTheme
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif
