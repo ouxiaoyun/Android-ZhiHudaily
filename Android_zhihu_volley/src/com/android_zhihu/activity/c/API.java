@@ -40,5 +40,22 @@ public class API {
 	 * @return
 	 */
 	public static native String getTheme();
+	
+	
+	/**
+	 * 详情-评论
+	 * 返回的字符串需要使用String.format();方法格式化<br />
+	 * 例如：String.format(API.getStoryExtra(), "4354228");
+	 * @return
+	 */
+	public static native String getStoryExtra();
+	
+	/**
+	 * 详情
+	 * 返回的字符串需要使用String.format();方法格式化<br />
+	 * 例如：String.format(API.getStory(), "4354228");
+	 * @return
+	 */
+	public static native String getStory();
 
 }

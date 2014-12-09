@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+    
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/sv_home"
@@ -50,6 +50,7 @@
                 android:id="@+id/lv_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                
                 android:divider="#EEEEEE"
                 android:dividerHeight="5dp"
                 android:padding="10dp" >

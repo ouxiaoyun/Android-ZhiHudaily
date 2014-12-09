@@ -130,38 +130,33 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 		
 		try {
 			
-			
 			theme.setLimit(response.getInt("limit"));
 			
+			// 解析Others
 			JSONArray jsonArray = response.getJSONArray("others");
-			
-			if(jsonArray!=null && jsonArray.length()>0){
-				
+			if (jsonArray != null && jsonArray.length() > 0) {
 				List<ThemeOther> others = new ArrayList<ThemeOther>();
 				
-				//单独设置首页
+				// 手动增加首页
 				ThemeOther other = new ThemeOther();
 				other.setName("首页");
+				others.add(other);
 				
-				for(int i=0; i<jsonArray.length(); i++){
+				// 解析
+				for (int i = 0 ; i < jsonArray.length() ; i++) {
+					JSONObject obj = jsonArray.getJSONObject(i);
 					other = new ThemeOther();
-					
-					JSONObject object = (JSONObject) jsonArray.get(i);
-					
-					other.setColor(object.getInt("color"));
-					other.setDescription(object.getString("description"));
-					other.setId(object.getLong("id"));
-					other.setImage(object.getString("image"));
-					other.setName(object.getString("name"));
-					
+					other.setColor(obj.getInt("color"));
+					other.setDescription(obj.getString("description"));
+					other.setId(obj.getLong("id"));
+					other.setImage(obj.getString("image"));
+					other.setName(obj.getString("name"));
 					others.add(other);
 				}
 				
 				theme.setOthers(others);
 				
-				//数据更新
 				adapter.notifyDataSetChanged();
-				
 			}
 			
 		} catch (JSONException e) {

@@ -47,6 +47,22 @@ JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getBefore
 JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getTheme
   (JNIEnv *, jclass);
 
+/*
+ * Class:     com_android_zhihu_activity_c_API
+ * Method:    getStoryExtra
+ * Signature: ()Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getStoryExtra
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_android_zhihu_activity_c_API
+ * Method:    getStory
+ * Signature: ()Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getStory
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif

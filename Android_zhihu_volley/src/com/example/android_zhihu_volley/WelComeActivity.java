@@ -84,6 +84,7 @@ public class WelComeActivity extends Activity implements AnimationListener{
 	public void onAnimationEnd(Animation animation) {
 		
 		startActivity(new Intent(WelComeActivity.this, MainActivity.class));
+		finish();
 		
 	}
 

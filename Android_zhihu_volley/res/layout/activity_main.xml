@@ -5,12 +5,11 @@
     android:orientation="vertical"
     tools:context="com.android_zhihu.activity.MainActivity" >
 
-    <com.android_zhihu.activity.widget.CombineTitle
+       <com.android_zhihu.activity.widget.CombineTitle
         android:id="@+id/cobineTitle"
         android:layout_width="match_parent"
         android:layout_height="60dp" >
     </com.android_zhihu.activity.widget.CombineTitle>
-
     
     <FrameLayout 
         

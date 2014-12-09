@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.android_zhihu_volley.MainActivity"></activity>
+        <activity android:name="com.example.android_zhihu_volley.ContentActivity"></activity>
     </application>
 
 </manifest>

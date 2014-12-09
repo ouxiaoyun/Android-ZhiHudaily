@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -28,6 +31,7 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.actionbarsherlock.view.Menu;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response.Listener;
@@ -42,12 +46,14 @@ import com.android_zhihu.activity.entity.TopStory;
 import com.android_zhihu.cache.BitmapCache;
 import com.android_zhihu.utils.date.DateStyle;
 import com.android_zhihu.utils.date.DateUtil;
+import com.example.android_zhihu_volley.ContentActivity;
 import com.example.android_zhihu_volley.R;
+import com.example.android_zhihu_volley.R.menu;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
-public class CombineListandViewpager extends FrameLayout implements Listener<JSONObject>,OnRefreshListener2<ScrollView>{
+public class CombineListandViewpager extends FrameLayout implements Listener<JSONObject>,OnRefreshListener2<ScrollView>,OnItemClickListener{
 
 	private Context context;
 	
@@ -86,7 +92,7 @@ public class CombineListandViewpager extends FrameLayout implements Listener<JSO
 
 	// 数据准备
 	private void getReady() {
-
+		
 		index_viewpager = (LinearLayout) findViewById(R.id.index_viewpager);
 		pager_home = (ViewPager) findViewById(R.id.pager_home);
 		pageradapter = new MyPagerAdapter();
@@ -98,13 +104,9 @@ public class CombineListandViewpager extends FrameLayout implements Listener<JSO
 		//初始化的时候就第一次加载数据
 		adapter = new MyListAdapter();
 		lv_list.setAdapter(adapter);
-		
+		lv_list.setOnItemClickListener(this);
 		sv_home = (PullToRefreshScrollView) findViewById(R.id.sv_home);
 		sv_home.setOnRefreshListener(this);
-		
-		
-		
-
 	}
 
 	// 初始化数据
@@ -246,35 +248,42 @@ public class CombineListandViewpager extends FrameLayout implements Listener<JSO
 			for (int i = 0; i < jsonArray.length(); i++) {
 				story = new Story();
 				JSONObject object = (JSONObject) jsonArray.get(i);
+				
+				if(object.has("theme_name")){
+					
+				}
+				else{
+					
+					story.setId(object.getLong("id"));
 
-				story.setId(object.getLong("id"));
+					story.setGa_prefix(object.getString("ga_prefix"));
 
-				story.setGa_prefix(object.getString("ga_prefix"));
+					story.setShare_url(object.getString("share_url"));
 
-				story.setShare_url(object.getString("share_url"));
+					story.setTitle(object.getString("title"));
 
-				story.setTitle(object.getString("title"));
+					story.setType(object.getInt("type"));
 
-				story.setType(object.getInt("type"));
+					JSONArray array = object.getJSONArray("images");
 
-				JSONArray array = object.getJSONArray("images");
+					if (array != null && array.length() > 0) {
+						String[] images = new String[array.length()];
 
-				if (array != null && array.length() > 0) {
-					String[] images = new String[array.length()];
+						for (int j = 0; j < images.length; j++) {
 
-					for (int j = 0; j < images.length; j++) {
+							images[j] = array.getString(j);
+						}
 
-						images[j] = array.getString(j);
+						story.setImages(images);
 					}
 
-					story.setImages(images);
+					/*if (story.getImages() != null&& story.getImages().length > 0) {
+						story.setBitmap(NetHelper.getBitmap(story.getImages()[0]));
+						
+					}*/
+					stories.add(story);
 				}
-
-				/*if (story.getImages() != null&& story.getImages().length > 0) {
-					story.setBitmap(NetHelper.getBitmap(story.getImages()[0]));
-					
-				}*/
-				stories.add(story);
+				
 			}
 			
 			if(news.getStories() != null){
@@ -418,7 +427,7 @@ public class CombineListandViewpager extends FrameLayout implements Listener<JSO
 
 		@Override
 		public boolean isViewFromObject(View arg0, Object arg1) {
-			return arg0 == arg1;
+       			return arg0 == arg1;
 		}
 
 		@Override
@@ -539,7 +548,22 @@ public class CombineListandViewpager extends FrameLayout implements Listener<JSO
 		queue.add(new JsonObjectRequest(Method.GET, String.format(API.getBefore(), news.getDate()), null, this, null));
 		
 	}
-	
+
 	/* -------------------- pulltorefresh上下监听 -------------------- */
+	
+
+	
+	/* -------------------- ListView监听 -------------------- */
+	
+	
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Story story = news.getStories().get(position);
+		Intent intent = new Intent(context, ContentActivity.class);
+		intent.putExtra("id", story.getId());
+		context.startActivity(intent);
+	}
+	
+	/* -------------------- ListView监听 -------------------- */
 
 }

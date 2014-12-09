@@ -33,3 +33,15 @@ JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getTheme
 	return (*env)->NewStringUTF(env, "http://news-at.zhihu.com/api/3/theme/%s");
 
 }
+
+JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getStoryExtra
+  (JNIEnv *env, jclass thiz){
+
+	return (*env)->NewStringUTF(env,"http://news-at.zhihu.com/api/3/story-extra/%s");
+}
+
+JNIEXPORT jstring JNICALL Java_com_android_1zhihu_activity_c_API_getStory
+  (JNIEnv *env, jclass thiz){
+
+	return (*env)->NewStringUTF(env,"http://news-at.zhihu.com/api/3/story/%s");
+}
